@@ -15,7 +15,7 @@ class BaseNeighbourhoodStatsExtractor:
     def fetch_neighbours_cosine(self, word, use_modern_projected):
         pass
 
-    def compute_neighbourhood_stats_cosine(self, word_pair_dict, output_dir):
+    def compute_neighbourhood_stats_cosine(self, word_pair_dict, output_file):
         """
         Computing density and average frequency growth rate for a range of neighbourhoods
         of each neologism and control word
@@ -31,7 +31,7 @@ class BaseNeighbourhoodStatsExtractor:
             rows = self._neighbourhood_stats_helper(list(word_pair_dict.items()))
         
         df = pd.DataFrame(rows) # type: ignore
-        df.to_csv(f"{output_dir}/result.csv", na_rep="NaN", index=False)
+        df.to_csv(f"{output_file}", na_rep="NaN", index=False)
 
         df_density = df[["IsNeologism"] + [f"DensityAtRadius{r:.3f}" for r in COSINE_RADIUS_RANGE]].copy()
         mean_density = df_density.groupby("IsNeologism").mean()
@@ -50,13 +50,6 @@ class BaseNeighbourhoodStatsExtractor:
             print(row[0])
             for c in COSINE_RADIUS_RANGE:
                 print(f'({c}, {row[1][f"GrowthSlopeAtRadius{c:.3f}"]["mean"]}) +- (0.0, {row[1][f"GrowthSlopeAtRadius{c:.3f}"]["sem"]})')
-
-        plot_neighbourhood_stats(df_density, "density", 
-                                    outfile=f"{output_dir}/density_log.png")
-        plot_neighbourhood_stats(df_growth_mono, "growth monotonicity", 
-                                    outfile=f"{output_dir}/growth_mono.png")
-        plot_neighbourhood_stats(df_growth_slope, "growth slope", 
-                                    outfile=f"{output_dir}/growth_slope.png")
         
     def _neighbourhood_stats_helper(self, word_pair_list):
         results = []

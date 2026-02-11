@@ -89,14 +89,11 @@ def main(params):
 
     print("Estimating neighborhood density and frequency growth...")
     if embedding_type == "word2vec":
-        outdir = f"outputs/{dataset}/{'strict' if params.strict else 'all'}/word2vec/"
-        os.makedirs(outdir, exist_ok=True)
         ns = Word2VecNeighbourhoodStatsExtractor(model_historical, model_modern_projected, count_df[count_df.index.isin(historical_vocab)], timestep_totals)
     else:
-        outdir = f"outputs/{dataset}/{'strict' if params.strict else 'all'}/roberta/"
-        os.makedirs(outdir, exist_ok=True)
         ns = RobertaNeighbourhoodStatsExtractor(embeddings_historical, embeddings_modern, count_df[count_df.index.isin(historical_vocab)], timestep_totals)
-    ns.compute_neighbourhood_stats_cosine(neologism_control_pairs, outdir)
+    outfile = f"outputs/{dataset}/{'strict' if params.strict else 'all'}/{embedding_type}_result.csv"
+    ns.compute_neighbourhood_stats_cosine(neologism_control_pairs, outfile)
     print("Done.")
 
 # ----------------------------------------------------------------
