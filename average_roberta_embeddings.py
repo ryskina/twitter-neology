@@ -139,8 +139,8 @@ def zscore_all_embeddings(dataset):
         modern_vocab = set(df_pairs["neologism"].tolist() + df_pairs_strict["neologism"].tolist())
     else:
         fnames_modern = ["modern_contexts"]
-        df_pairs = pd.read_csv(f"outputs/twitter/pairs.relaxed.asdescribed.csv")
-        df_pairs_strict = pd.read_csv(f"outputs/twitter_strict/pairs.relaxed.asdescribed.csv")
+        df_pairs = pd.read_csv(f"outputs/twitter/pairs.csv")
+        df_pairs_strict = pd.read_csv(f"outputs/twitter_strict/pairs.csv")
         modern_vocab = set(df_pairs["neologism"].tolist() + df_pairs_strict["neologism"].tolist())
 
     print("Loading modern embeddings...")

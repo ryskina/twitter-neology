@@ -99,7 +99,7 @@ def load_tweets_with_sampled_ids(split):
         print(f"Processing year {year}...")
         df_year = df[df["year"] == year]
         tweet_ids = df_year["tweet_id"].unique()
-        with open(f"data/tweet_scraped_full/{year}_tweets.json", "r") as f:
+        with open(f"data/tweet_scraped_full/{year}_tweets.jsonl", "r") as f:
             results = parallelize_func(list(f), check_ids_lines, chunksz=1000, n_jobs=100)
             for line in results:
                 fout.write(line)

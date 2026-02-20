@@ -107,4 +107,4 @@ if __name__ == '__main__':
     for year in range(2007, 2022):
         print(f"Tokenizing tweets from year: {year}", flush=True)
         fout = open(f'data/tweet_tokenized/{year}.tsv', 'w+')
-        measure(parallel_process, f'data/tweet_scraped_full/{year}_tweets.json')
+        measure(parallel_process, f'data/tweet_scraped_full/{year}_tweets.jsonl')
