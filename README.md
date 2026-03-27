@@ -1,4 +1,4 @@
-This repository contains the code and word lists for the [paper](https://arxiv.org/abs/2602.13123):
+This repository contains the code and word lists for the [paper](https://aclanthology.org/2026.lchange-1.14/):
 ```
 From sunblock to softblock: Analyzing the correlates of neology in published writing and on social media
 Maria Ryskina, Matthew R. Gormley, Kyle Mahowald, David R. Mortensen, Taylor Berg-Kirkpatrick, Vivek Kulkarni
@@ -47,3 +47,25 @@ where:
 * `--load_pairs`: if used, neologism--control pairs will be loaded from file (`outputs/{published_writing|twitter}/{all|strict}/pairs.csv`). Otherwise, the pairs are recomputed from scratch (available only for Word2Vec embeddings).
 
 The results are saved to `outputs/{published_writing|twitter}/{all|strict}/{roberta|word2vec}_results.csv`.
+
+## Citation
+
+If you use our code or data, please cite:
+
+```
+@inproceedings{ryskina-etal-2026-sunblock,
+    title = "From sunblock to softblock: Analyzing the correlates of neology in published writing and on social media",
+    author = "Ryskina, Maria  and
+      Gormley, Matthew R.  and
+      Mahowald, Kyle  and
+      Mortensen, David R.  and
+      Berg-Kirkpatrick, Taylor  and
+      Kulkarni, Vivek",
+    booktitle = "The Proceedings for the 6th International Workshop on Computational Approaches to Language Change ({LC}hange{'}26)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.lchange-1.14/",
+    doi = "10.18653/v1/2026.lchange-1.14",
+    pages = "162--180",
+    ISBN = "979-8-89176-362-3"
+}
+```
